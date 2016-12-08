@@ -16,6 +16,9 @@
 			</div>
 		</div>
 		<div class="panel-body">
+			<!--Search: <input type="text"  ng-model="$ctrl.searchText"-->
+			Search: <!--input type="text"  ng-model="$ctrl.search.name"-->
+			Search: <input type="text"  ng-model="$ctrl.search.$">
 			<table class="table table-striped table-bordered table-condensed">
 				<thead>
 					<tr>
@@ -23,26 +26,43 @@
 						<th>Category</th>
 						<th>Expiry</th>
 						<th class="text-right">Price</th>
+						<!--th>JSON</th-->
 					</tr>
 				</thead>
+				
 				<tbody>
-					<tr ng-repeat="p in $ctrl.products">
-						<td>{{p.name}}</td>
-						<td>{{p.category}}</td>
-						<td>{{p.expiry}}</td>
-						<td class="text-right">{{p.price}}</td>
+					<!--tr ng-repeat="p in $ctrl.products | filter: $ctrl.search"-->
+					<!--<tr ng-repeat="p in $ctrl.products | skip: -1">-->
+					<tr ng-repeat="p in $ctrl.products | take: 1: 3">
+					<!--tr ng-repeat="p in $ctrl.products | filter: $ctrl.selectItem"-->
+					<!--tr ng-repeat="p in $ctrl.products | filter: $ctrl.searchText"-->
+					
+					<!--tr ng-repeat="p in $ctrl.products | limitTo: 7:1"-->
+					<!--tr ng-repeat="p in $ctrl.products | orderBy:'price':true"-->
+					<!--tr ng-repeat="p in $ctrl.products | orderBy: [
+					$ctrl.myCustomSorter, 'price']"-->
+					<!--td>{{p.name | lowercase}}</td-->
+					<td>{{p.name | labelCase : true}}</td>
+					<td>{{p.category | uppercase}}</td>
+					<td>{{$ctrl.getExpiryDate(p.expiry) | date }}</td>
+					<td class="text-right">{{p.price | currency}}</td>
+						<!--td class="text-right">{{p.price | currency: "&euro;"}}</td-->
+						<!--td class="text-right">{{p.price | number: 1}}</td-->
+						<!--td>{{$ctrl.myCustomSorter(p)}}</td-->
+						
 					</tr>
 				</tbody>
 			</table>
 
 			<!-- linky example -->
-			<!-- <div ng-bind-html="$ctrl.htmlSnippet"></div> -->
-			<!-- <div ng-bind-html="$ctrl.htmlSnippet | linky"></div> -->
+			 <!--div ng-bind-html="$ctrl.htmlSnippet"></div> 
+			 <div ng-bind-html="$ctrl.htmlSnippet | linky"></div--> 
 		</div>
 	<div>
 
 	<script src="vendor/angular/angular.min.js"></script>
 	<script src="vendor/angular-sanitize/angular-sanitize.min.js"></script>
+	<!--script src="vendor/angular-i18n/angular-locale_ru-ru.js"></script-->
 
 	
 	<script src="app.js"></script>
